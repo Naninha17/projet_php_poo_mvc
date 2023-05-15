@@ -11,3 +11,5 @@ define('VIEWS_DIR', __DIR__ . '/../views');
 
 //define('VIEWS DIR', __DIR__ . '/../views');
 
+// URL du dossier "public" (avec fichiers CSS, JS, images, etc...), servira pour construire les liens dans la partir frontend
+define('PUBLIC_PATH', mb_substr($_SERVER['SCRIPT_NAME'], 0, -(mb_strlen(basename(__FILE__)))));
