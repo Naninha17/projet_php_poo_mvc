@@ -17,7 +17,7 @@ require __DIR__ . '/../configs/params.php';
 
 try{
 
-    //Inclusion du fichier qui contient toutes les routes (URLs du site) et qui chargera le contrôleur de chaque route 
+    //Inclusion du fichier qui contient toutes les routes (URLs du site) et qui chargera le contrôleur de chaque route
     require __DIR__ . '/../configs/routes.php';
 
 } catch(Throwable $e){
