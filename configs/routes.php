@@ -15,14 +15,19 @@ $mainController = new MainController();
 switch (ROUTE){
 
     //Route de la page d'accueil
-
     case '/';
 
     $mainController->home();
     break;
 
-        //Si aucune des URL précédentes ne match, c'est la page qui sera appelée par défaut
 
+    //Route de la page d'inscription
+    case '/creer-un-compte/';
+        $mainController->register();
+        break;
+
+
+    //Si aucune des URL précédentes ne match, c'est la page qui sera appelée par défaut
     default:
 
     $mainController->page404();
