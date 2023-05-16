@@ -16,20 +16,22 @@ switch (ROUTE){
 
     //Route de la page d'accueil
     case '/';
-
-    $mainController->home();
+        $mainController->home();
     break;
 
 
     //Route de la page d'inscription
     case '/creer-un-compte/';
-        $mainController->register();
+            $mainController->register();
         break;
 
+    //Route de la page de connexion
+    case '/connexion/';
+        $mainController->login();
+    break;
 
     //Si aucune des URL précédentes ne match, c'est la page qui sera appelée par défaut
     default:
-
-    $mainController->page404();
+        $mainController->page404();
     break;
 }
