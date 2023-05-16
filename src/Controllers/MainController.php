@@ -42,60 +42,68 @@ class MainController{
             isset($_POST['confirm-password']) &&
             isset($_POST['firstname']) &&
             isset($_POST['lastname'])
-        ){
+        ) {
 
             // Vérifs
-            if(!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
+            if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
                 $errors[] = 'Adresse email invalide';
             }
 
-            if(!preg_match('/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[ !"#\$%&\'()*+,\-.\/:;<=>?@[\\\\\]\^_`{\|}~]).{8,4096}$/u', $_POST['password'])){
+            if (!preg_match('/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[ !"#\$%&\'()*+,\-.\/:;<=>?@[\\\\\]\^_`{\|}~]).{8,4096}$/u', $_POST['password'])) {
                 $errors[] = 'Mot de passe invalide';
             }
 
-            if($_POST['password'] != $_POST['confirm-password']){
+            if ($_POST['password'] != $_POST['confirm-password']) {
                 $errors[] = 'La confirmation ne correspond pas au mot de passe';
             }
 
-            if(mb_strlen($_POST['firstname']) < 2 || mb_strlen($_POST['firstname']) > 50){
+            if (mb_strlen($_POST['firstname']) < 2 || mb_strlen($_POST['firstname']) > 50) {
                 $errors[] = 'Le prénom est invalide (entre 2 et 50 caractères)';
             }
 
-            if(mb_strlen($_POST['lastname']) < 2 || mb_strlen($_POST['lastname']) > 50){
+            if (mb_strlen($_POST['lastname']) < 2 || mb_strlen($_POST['lastname']) > 50) {
                 $errors[] = 'Le nom est invalide (entre 2 et 50 caractères)';
             }
 
             // Si pas d'erreurs
-            if(!isset($errors)){
-
-                // Créer un nouvel utilisateur
-                $newUserToInsert = new User();
-
-                //Date actuelle (pour hydrater la date d'inscription)
-                $today = new DateTime();
-
-                //Hydratation
-                $newUserToInsert
-                    ->setEmail($_POST['email'])
-                    ->setPassword( password_hash($_POST['password'], PASSWORD_BCRYPT) )
-                    ->setFirstname($_POST['firstname'])
-                    ->setLastname($_POST['lastname'])
-                    ->setRegisterDate( $today )
-
-                ;
+            if (!isset($errors)) {
 
                 //Instanciation du manager des users
                 $userManager = new UserManager();
 
-                //On demande au manager de sauvegarder notre nouvel utilisateur dans la BDD
-                $userManager->save( $newUserToInsert );
+                //Vérification si l'email est déjà prise
+                $checkUser = $userManager->findOneBy('email', $_POST['email']);
 
-                //Message de succès
-                $success = 'Votre compte a bien été créé !';
+                if (!empty($checkUser)) {
+                    $errors[] = 'Cette adresse mail est déjà utilisée';
+
+                } else {
+
+                    // Créer un nouvel utilisateur
+                    $newUserToInsert = new User();
+
+                    //Date actuelle (pour hydrater la date d'inscription)
+                    $today = new DateTime();
+
+                    //Hydratation
+                    $newUserToInsert
+                        ->setEmail($_POST['email'])
+                        ->setPassword(password_hash($_POST['password'], PASSWORD_BCRYPT))
+                        ->setFirstname($_POST['firstname'])
+                        ->setLastname($_POST['lastname'])
+                        ->setRegisterDate($today);
+
+
+                    //On demande au manager de sauvegarder notre nouvel utilisateur dans la BDD
+                    $userManager->save($newUserToInsert);
+
+                    //Message de succès
+                    $success = 'Votre compte a bien été créé !';
+
+                }
 
             }
-
-        }
+        } //accolade fermante du else
 
         //Charge la vue "register.php" dans le dossier "views"
         require VIEWS_DIR . '/register.php';
