@@ -30,6 +30,11 @@ switch (ROUTE){
         $mainController->login();
     break;
 
+    //Route de la page de déconnexion
+    case '/deconnexion/';
+        $mainController->logout();
+    break;
+
     //Si aucune des URL précédentes ne match, c'est la page qui sera appelée par défaut
     default:
         $mainController->page404();
