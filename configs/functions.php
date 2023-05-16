@@ -70,3 +70,12 @@ function connectedDb(): PDO
 
     return $db;
 }
+
+//------------------------------------
+
+//Fonction qui retourne true si on est connecté, sinon false
+function isConnected(){
+
+    return isset($_SESSION['user']);
+
+}
