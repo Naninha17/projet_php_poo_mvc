@@ -200,6 +200,23 @@ class MainController{
     }
 
     /*
+     * Contrôleur de la page profil
+     */
+    public function profil():void
+    {
+        //Redirige l'utilisateur sur la page de connexion
+        if (!isConnected()){
+
+            header('Location: ' . PUBLIC_PATH . '/connexion/');
+            die();
+        }
+
+        //Charge la vue "profil.php"
+        require VIEWS_DIR . '/profil.php';
+
+    }
+
+    /*
      * Contrôleur de la page 404
      */
     public function page404(): void
