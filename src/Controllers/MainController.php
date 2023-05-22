@@ -303,11 +303,34 @@ class MainController{
 
         $fruits = $fruitManager->findAll();
 
-        dump($fruits);
-
 
         //Charge la vue "fruitList.php" dans le dossier views
         require VIEWS_DIR . '/fruitList.php';
+    }
+
+
+    /*
+     * Contrôleur de la page qui affiche un fruit en détail
+     */
+
+    public function fruitDetails(): void
+    {
+
+        //Récupération du manager des fruits
+        $fruitManager = new FruitManager();
+
+        //On récupère le fruit dont l'id est stocké dans l'url
+        $fruit = $fruitManager->findOneBy('id', $_GET['id']);
+
+
+        //Si on aucun fruit n'a été trouvé, on affiche la page 404
+
+        if (empty($fruit)){
+            $this->page404();
+            die();
+        }
+
+        require VIEWS_DIR . '/fruitDetails.php';
     }
 
 

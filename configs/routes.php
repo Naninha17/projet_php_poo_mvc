@@ -50,6 +50,11 @@ switch (ROUTE){
         $mainController->fruitList();
     break;
 
+    //Route de la page qui affiche un fruit en détail
+    case '/fruits/fiche/';
+        $mainController->fruitDetails();
+        break;
+
     //Si aucune des URL précédentes ne match, c'est la page qui sera appelée par défaut
     default:
         $mainController->page404();
