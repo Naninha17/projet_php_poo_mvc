@@ -55,6 +55,11 @@ switch (ROUTE){
         $mainController->fruitDetails();
         break;
 
+    //Route de la page qui supprime un fruit
+    case '/fruits/supprimer/';
+        $mainController->fruitDelete();
+        break;
+
     //Si aucune des URL précédentes ne match, c'est la page qui sera appelée par défaut
     default:
         $mainController->page404();
