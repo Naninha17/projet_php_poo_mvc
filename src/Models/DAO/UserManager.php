@@ -26,7 +26,7 @@ class UserManager{
 
     public function __construct()
     {
-        $this->db = connectedDb();
+        $this->db = connectDb();
     }
 
     /**

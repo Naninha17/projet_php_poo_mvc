@@ -28,13 +28,18 @@
 
                     <!--Lien vers la page de profil-->
                     <li class="nav-item">
-                        <a class="nav-link<?= (ROUTE == '/mon-profil') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/mon-profil">Profil</a>
+                        <a class="nav-link<?= (ROUTE == '/mon-profil/') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/mon-profil/">Profil</a>
                     </li>
 
                 <!--Lien vers la page de déconnexion-->
                 <li class="nav-item">
-                    <a class="nav-link<?= (ROUTE == '/deconnexion') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/deconnexion/">Déconnexion</a>
+                    <a class="nav-link<?= (ROUTE == '/deconnexion/') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/deconnexion/">Déconnexion</a>
                 </li>
+
+                    <!--Lien vers la page d'ajout d'un fruit-->
+                    <li class="nav-item">
+                        <a class="nav-link<?= (ROUTE == '/fruits/ajouter-un-fruit/') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/fruits/ajouter-un-fruit/">Ajouter un fruit</a>
+                    </li>
 
                     <?php
 
