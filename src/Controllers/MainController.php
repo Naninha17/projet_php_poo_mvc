@@ -294,6 +294,24 @@ class MainController{
 
 
     /*
+     * Contrôleur de la page qui liste les fruits
+     */
+    public function fruitList(): void
+    {
+        //Récupération du manager des fruits
+        $fruitManager = new FruitManager();
+
+        $fruits = $fruitManager->findAll();
+
+        dump($fruits);
+
+
+        //Charge la vue "fruitList.php" dans le dossier views
+        require VIEWS_DIR . '/fruitList.php';
+    }
+
+
+    /*
      * Contrôleur de la page 404
      */
     public function page404(): void

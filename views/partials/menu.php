@@ -19,6 +19,11 @@
                     <a class="nav-link<?= (ROUTE == '/') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/">Accueil</a>
                 </li>
 
+                <!--Lien vers la page de la liste des fruits-->
+                <li class="nav-item">
+                    <a class="nav-link<?= (ROUTE == '/fruits/liste/') ? ' active' : '' ?>" href="<?= PUBLIC_PATH ?>/fruits/liste/">Liste des fruits</a>
+                </li>
+
                 <?php
 
                 //Si l'utilisateur est connecté
