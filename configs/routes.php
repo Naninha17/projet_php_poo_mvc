@@ -60,6 +60,11 @@ switch (ROUTE){
         $mainController->fruitDelete();
         break;
 
+    //Route de la page qui modifie un fruit
+    case '/fruits/modifier/';
+        $mainController->fruitEdit();
+        break;
+
     //Si aucune des URL précédentes ne match, c'est la page qui sera appelée par défaut
     default:
         $mainController->page404();
